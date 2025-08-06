@@ -17,7 +17,7 @@ This solution leverages state-of-the-art Vision Language Models (VLMs) to unders
 
 Watch the Visual Understanding Chat Assistant in action:
 
-🎥 **[View Demo on Loom](https://www.loom.com/share/8fb0074375bb4a428776fd3d1f12e701?sid=df5e3fe6-80d6-4db9-a2f7-363d84c6b5fb)**
+Demo video link: https://www.loom.com/share/8fb0074375bb4a428776fd3d1f12e701?sid=df5e3fe6-80d6-4db9-a2f7-363d84c6b5fb
 
 The demo showcases:
 - Video upload and processing
