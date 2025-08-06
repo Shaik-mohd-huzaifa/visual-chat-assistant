@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Understanding Chat Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Visual Understanding Chat Assistant</h1>
+            <p>Upload a video to analyze events, detect violations, and have intelligent conversations about the content</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Video Upload Section -->
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <h3>Drop video here or click to upload</h3>
+                    <p>Maximum duration: 2 minutes | Formats: MP4, AVI, MOV, MKV, WEBM</p>
+                    <input type="file" id="videoInput" accept="video/*" hidden>
+                </div>
+                
+                <div id="videoPreview" class="video-preview" style="display: none;">
+                    <video id="videoPlayer" controls></video>
+                    <button id="analyzeBtn" class="btn btn-primary">
+                        <span class="btn-text">Analyze Video</span>
+                        <span class="spinner" style="display: none;"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Analysis Results Section -->
+            <div id="analysisResults" class="analysis-results" style="display: none;">
+                <div class="results-header">
+                    <h2>Video Analysis Results</h2>
+                    <button id="analyzeAnotherBtn" class="btn btn-secondary">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        Analyze Another Video
+                    </button>
+                </div>
+                
+                <!-- Video Player Section -->
+                <div class="video-player-section">
+                    <video id="resultVideoPlayer" controls class="result-video-player"></video>
+                </div>
+                
+                <div class="results-tabs">
+                    <button class="tab-btn active" data-tab="summary">Summary</button>
+                    <button class="tab-btn" data-tab="events">Events</button>
+                    <button class="tab-btn" data-tab="guidelines">Guidelines</button>
+                    <button class="tab-btn" data-tab="video">Video Player</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="summaryTab" class="tab-pane active">
+                        <div class="summary-card">
+                            <h3>Video Summary</h3>
+                            <p id="videoSummary"></p>
+                        </div>
+                    </div>
+
+                    <div id="eventsTab" class="tab-pane">
+                        <div class="events-timeline">
+                            <h3>Detected Events</h3>
+                            <div id="eventsList"></div>
+                        </div>
+                    </div>
+
+                    <div id="guidelinesTab" class="tab-pane">
+                        <div class="guidelines-report">
+                            <h3>Guideline Adherence Report</h3>
+                            <div class="compliance-status">
+                                <span>Overall Compliance:</span>
+                                <span id="complianceStatus" class="status-badge"></span>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <span class="stat-value" id="totalEvents">0</span>
+                                    <span class="stat-label">Total Events</span>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-value" id="violationsCount">0</span>
+                                    <span class="stat-label">Violations</span>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-value" id="highSeverity">0</span>
+                                    <span class="stat-label">High Severity</span>
+                                </div>
+                            </div>
+                            <div id="violationsList"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="videoTab" class="tab-pane">
+                        <div class="video-player-container">
+                            <h3>Video Playback</h3>
+                            <video id="tabVideoPlayer" controls class="tab-video-player"></video>
+                            <div class="video-controls">
+                                <p>Use the video controls to play, pause, and seek through the uploaded video.</p>
+                                <p>Reference timestamps from the event analysis while reviewing the video.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div id="chatSection" class="chat-section" style="display: none;">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h3>💬 Ask Questions About the Video</h3>
+                        <button id="clearChat" class="btn-small">Clear Chat</button>
+                    </div>
+                    
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="message assistant">
+                            <div class="message-content">
+                                Hello! I've analyzed your video. Feel free to ask me any questions about the events, violations, or anything you'd like to know about the video content.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" placeholder="Ask about events, violations, timeline..." />
+                        <button id="sendBtn" class="btn btn-send">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
