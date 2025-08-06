@@ -17,16 +17,15 @@ This solution leverages state-of-the-art Vision Language Models (VLMs) to unders
 
 Watch the Visual Understanding Chat Assistant in action:
 
-https://github.com/user-attachments/assets/intro.mp4
-
-> **Note**: If the video doesn't play inline, you can download [intro.mp4](./intro.mp4) to view the full demonstration.
+🎥 **[View Demo on Loom](https://www.loom.com/share/8fb0074375bb4a428776fd3d1f12e701?sid=df5e3fe6-80d6-4db9-a2f7-363d84c6b5fb)**
 
 The demo showcases:
 - Video upload and processing
-- Real-time event detection
-- Traffic violation identification
+- Real-time event detection with detailed analysis
+- Traffic violation identification (red lights, pedestrian crossings)
 - Interactive chat functionality
-- Detailed analysis results
+- Video playback with analysis results
+- "Analyze Another Video" feature for seamless workflow
 
 ## 🏗️ Architecture
 
